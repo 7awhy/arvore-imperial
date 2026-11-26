@@ -34,14 +34,22 @@ h2{font-size:clamp(36px,4.6vw,56px)}
 .btn svg{width:20px;height:20px;flex:none}
 
 /* topo */
-.top{position:sticky;top:0;z-index:20;background:rgba(13,37,27,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(230,199,122,.18)}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.logo b{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700}
-.nav{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
-.nav a{color:var(--mute);text-decoration:none;font-size:15px}
-.nav a:hover{color:var(--ink)}
-.nav .btn{min-height:44px;padding:0 22px;font-size:15px;color:#1A1408}
+.announce{background:#7A1A17;color:#F6E3B4;font-size:14px;text-align:center;padding:9px 16px;letter-spacing:.02em}
+.announce b{color:#fff;font-weight:600}
+.announce .sep{color:var(--gold);margin:0 10px}
+.top{position:sticky;top:0;z-index:20;background:rgba(10,30,22,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(230,199,122,.22),0 10px 30px rgba(0,0,0,.25)}
+.top .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;min-height:84px}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);justify-self:start}
+.emblem{width:46px;height:46px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#1E4A36,#0B2018);border:1px solid var(--gold);box-shadow:0 0 0 4px rgba(230,199,122,.1),0 0 24px rgba(230,199,122,.25)}
+.emblem svg{width:26px;height:26px}
+.logo span{display:flex;flex-direction:column;line-height:1}
+.logo b{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.logo small{font-size:12px;color:var(--gold);margin-top:5px;letter-spacing:.06em}
+.nav{display:flex;align-items:center;gap:36px}
+.nav a{color:var(--mute);text-decoration:none;font-size:15px;position:relative;padding:6px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .25s}
+.nav a:hover{color:var(--ink)}.nav a:hover::after{transform:scaleX(1)}
+.top .cta{justify-self:end;min-height:46px;padding:0 24px;font-size:15px}
 
 /* hero */
 .hero{position:relative;overflow:hidden;background:radial-gradient(60% 70% at 74% 48%,rgba(222,165,64,.30),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(142,31,28,.25),transparent 70%)}
@@ -87,12 +95,18 @@ h2{font-size:clamp(36px,4.6vw,56px)}
 .feats span{color:var(--soft);font-size:16px}
 
 /* ambiente */
-.mood{position:relative;overflow:hidden;text-align:center}
-.mood .bg{position:absolute;inset:-60px;background:url(arvore.webp) center/cover;filter:blur(22px) brightness(.42) saturate(1.15);transform:scale(1.1)}
-.mood .wrap{position:relative;display:grid;justify-items:center;gap:48px}
-.mood blockquote{margin:0;font:500 clamp(36px,5vw,64px)/1.08 'Cormorant Garamond',serif;max-width:900px;text-wrap:balance}
+.mood{position:relative;overflow:hidden;text-align:center;background:radial-gradient(55% 65% at 50% 60%,rgba(222,165,64,.22),transparent 70%),linear-gradient(180deg,#0A1E16,#0D251B 60%,#0A1E16);padding-top:0}
+.orn{display:block;width:100%;height:clamp(170px,22.5vw,300px)}
+.orn .sw{transform-origin:top center;animation:sw 6s ease-in-out infinite}
+@keyframes sw{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.mood .wrap{position:relative;display:grid;justify-items:center;gap:30px;padding-top:24px}
+.mood blockquote{margin:0;font:500 clamp(38px,5.2vw,68px)/1.06 'Cormorant Garamond',serif;max-width:920px;text-wrap:balance}
 .mood blockquote em{color:var(--gold)}
-.mood img{width:100%;max-width:880px;aspect-ratio:16/7;object-fit:cover;border-radius:24px;border:1px solid rgba(230,199,122,.4);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.divider{display:flex;align-items:center;gap:16px;color:var(--gold)}
+.divider::before,.divider::after{content:"";width:clamp(48px,10vw,120px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.divider::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.divider svg{width:18px;height:18px}
+.mood .sig{font-size:15px;color:var(--mute);margin:0}
 
 /* compra */
 .buy{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(40px,6vw,80px);align-items:start}
@@ -132,14 +146,19 @@ footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
 @media(max-width:900px){
   .hero .wrap,.split,.buy{grid-template-columns:minmax(0,1fr)}
   .hero .frame{max-width:400px}
-  .nav a:not(.btn){display:none}
+  .nav{display:none}
+  .top .wrap{grid-template-columns:1fr auto;min-height:72px}
   .panel{position:static}
   .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,16px) calc(12px + env(safe-area-inset-bottom));background:rgba(13,37,27,.96);backdrop-filter:blur(10px);border-top:1px solid rgba(230,199,122,.3)}
   .mbar b{font:700 26px 'Cormorant Garamond',serif}
   .mbar .btn{min-height:48px;padding:0 24px}
   footer{padding-bottom:100px}
 }
+@media(min-width:601px){.cta .long{display:inline}}
 @media(max-width:600px){
+  .announce{font-size:13px}.announce .hide-s{display:none}
+  .logo b{font-size:22px}.cta .long{display:none}.logo small{display:none}.emblem{width:40px;height:40px}.emblem svg{width:22px;height:22px}
+  .top .cta{min-height:42px;padding:0 18px;font-size:14px}.top .cta svg{display:none}
   .tag{left:-6px;bottom:24px}
   .ctas .btn{width:100%}
   .photos{padding:0 12px 24px 0}
@@ -150,17 +169,19 @@ footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
 </head>
 <body>
 
+<div class="announce"><b>Entrega em até 7 dias</b><span class="hide-s"><span class="sep" aria-hidden="true">✦</span>Coleção de Natal 2026</span></div>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#topo">
-      <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#E6C77A"><path d="M12 1.5l2.6 5.6 6.1.7-4.6 4.1 1.3 6L12 14.9l-5.4 3 1.3-6-4.6-4.1 6.1-.7z"/></svg>
-      <b>Árvore Imperial</b>
+    <a class="logo" href="#topo" aria-label="Árvore Imperial, início">
+      <span class="emblem" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.2l1.1 2.3 2.5.3-1.9 1.7.5 2.5L12 7.8 9.8 9l.5-2.5-1.9-1.7 2.5-.3z" fill="#F3DEA2"/><path d="M12 9.5l3.6 4.6h-2.1l3.4 4.4H7.1l3.4-4.4H8.4z" fill="#E6C77A"/><rect x="11" y="18.5" width="2" height="2.6" rx=".4" fill="#B08A35"/></svg></span>
+      <span><b>Árvore Imperial</b><small>Iluminada · Natal 2026</small></span>
     </a>
     <nav class="nav" aria-label="Seções">
+      <a href="#topo">Início</a>
       <a href="#detalhes">Detalhes</a>
       <a href="#comprar">Comprar</a>
-      <a class="btn btn-gold" href="#comprar">Comprar agora</a>
     </nav>
+    <a class="btn btn-gold cta" href="#comprar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>Comprar<span class="long">&nbsp;agora</span></a>
   </div>
 </header>
 
@@ -216,10 +237,12 @@ footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
 </section>
 
 <section class="band mood">
-  <div class="bg" aria-hidden="true"></div>
+  <div class="lights" id="lights2" aria-hidden="true"></div>
+  <svg class="orn" id="orn" viewBox="0 0 1200 270" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
   <div class="wrap">
     <blockquote>Ela não só decora a sala. <em>Ela vira o centro do seu Natal.</em></blockquote>
-    <img src="presentes.webp" alt="Presentes ao pé da árvore iluminada" width="960" height="420">
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5l2.6 5.6 6.1.7-4.6 4.1 1.3 6L12 14.9l-5.4 3 1.3-6-4.6-4.1 6.1-.7z"/></svg></div>
+    <p class="sig">Árvore Imperial Iluminada · Natal 2026</p>
   </div>
 </section>
 
@@ -230,7 +253,6 @@ footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
       <div class="thumbs" role="group" aria-label="Fotos do produto">
         <button type="button" aria-pressed="true" data-src="arvore.webp" aria-label="Foto 1: árvore inteira"><img src="arvore.webp" alt=""></button>
         <button type="button" aria-pressed="false" data-src="detalhe.webp" aria-label="Foto 2: detalhe dos galhos"><img src="detalhe.webp" alt=""></button>
-        <button type="button" aria-pressed="false" data-src="presentes.webp" aria-label="Foto 3: base com presentes"><img src="presentes.webp" alt=""></button>
       </div>
     </div>
     <div class="panel">
@@ -288,7 +310,22 @@ footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
 
   const L = document.getElementById('lights');
   const pts = [[6,12,6,0],[14,40,4,1.1],[22,8,5,2.2],[31,70,4,.6],[44,14,6,1.7],[50,86,5,2.8],[58,6,4,.3],[63,30,7,1.4],[68,64,5,2.5],[74,12,4,.9],[80,48,6,2],[85,82,4,1.2],[89,24,5,.4],[94,58,6,2.6],[97,8,4,1.8],[38,92,5,.7],[3,64,5,2.3],[47,50,3,1.5],[26,30,4,3],[9,88,5,.2]];
-  L.innerHTML = pts.map(([x,y,s,d]) => `<i style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></i>`).join('');
+  const dots = pts.map(([x,y,s,d]) => `<i style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></i>`).join('');
+  L.innerHTML = dots;
+  document.getElementById('lights2').innerHTML = dots;
+
+  const orns = [[70,60,22,'g'],[190,120,30,'r'],[320,80,20,'i'],[450,150,34,'g'],[600,95,26,'r'],[750,160,32,'g'],[880,70,20,'i'],[1010,130,30,'r'],[1130,85,24,'g']];
+  const grad = {g:'url(#og)', r:'url(#or)', i:'url(#oi)'};
+  document.getElementById('orn').innerHTML = `<defs>
+    <radialGradient id="og" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFF1C4"/><stop offset=".45" stop-color="#E6C77A"/><stop offset="1" stop-color="#8A6420"/></radialGradient>
+    <radialGradient id="or" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#F08A7E"/><stop offset=".45" stop-color="#B3261E"/><stop offset="1" stop-color="#5A0F0C"/></radialGradient>
+    <radialGradient id="oi" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".5" stop-color="#EDE4D0"/><stop offset="1" stop-color="#9C927E"/></radialGradient>
+  </defs>` + orns.map(([x,len,r,c],k) => `<g class="sw" style="animation-delay:${-k*0.7}s;transform-box:view-box;transform-origin:${x}px 0">
+    <line x1="${x}" y1="0" x2="${x}" y2="${len}" stroke="#E6C77A" stroke-opacity=".55" stroke-width="1.2"/>
+    <rect x="${x-r*0.28}" y="${len}" width="${r*0.56}" height="${r*0.38}" rx="2" fill="#C9A24B"/>
+    <circle cx="${x}" cy="${len + r*0.38 + r}" r="${r}" fill="${grad[c]}"/>
+    <ellipse cx="${x - r*0.35}" cy="${len + r*0.38 + r*0.6}" rx="${r*0.22}" ry="${r*0.14}" fill="#fff" fill-opacity=".55" transform="rotate(-30 ${x - r*0.35} ${len + r*0.38 + r*0.6})"/>
+  </g>`).join('');
 
   const words = ['Árvore Imperial','Iluminada','PVC de luxo','Estilo europeu','Entrega em até 7 dias','Natal 2026'];
   const run = words.map(w => `<span>${w} <span aria-hidden="true">✦</span></span>`).join('');
