@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Árvore Imperial Iluminada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: elegante, acolhedor, noite de Natal — loja de presente fino
+   IDEA: a vitrine iluminada de uma loja em dezembro, vista da rua à noite
+   PICTURE: a foto da árvore numa moldura em arco, com luzinhas piscando ao redor
+   COLOUR and TYPE: verde-pinheiro profundo + dourado quente; Cormorant Garamond + Inter
+   LAYOUT: faixas de largura total alternando noite (verde) e dia (marfim), terminando na caixa de compra */
+:root{color-scheme:dark;--pine:#0D251B;--pine2:#123326;--gold:#E6C77A;--gold2:#F3DEA2;--ivory:#FBF6EC;--ink:#F6F0E2;--mute:#CFC6B2;--dark:#13201A;--soft:#4A574F}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--pine);color:var(--ink);font:17px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:var(--gold)}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(36px,4.6vw,56px)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,20px)}
+.band{padding:clamp(72px,9vw,120px) 0}
+.kicker{font-size:15px;color:var(--gold);font-weight:500;margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 30px;border-radius:999px;font:600 16px Inter,sans-serif;text-decoration:none;transition:transform .2s,background .2s;white-space:nowrap;border:0;cursor:pointer}
+.btn:focus-visible,.thumbs button:focus-visible,.qty button:focus-visible,.nav a:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.btn-gold{background:var(--gold);color:#1A1408;box-shadow:0 14px 34px rgba(230,199,122,.28)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-line{border:1px solid rgba(246,240,226,.4);color:var(--ink);background:none}
+.btn-line:hover{background:rgba(246,240,226,.08)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* topo */
+.top{position:sticky;top:0;z-index:20;background:rgba(13,37,27,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(230,199,122,.18)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.logo b{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700}
+.nav{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.nav a{color:var(--mute);text-decoration:none;font-size:15px}
+.nav a:hover{color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 22px;font-size:15px;color:#1A1408}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(60% 70% at 74% 48%,rgba(222,165,64,.30),transparent 70%),radial-gradient(40% 50% at 10% 90%,rgba(142,31,28,.25),transparent 70%)}
+.lights{position:absolute;inset:0;pointer-events:none}
+.lights i{position:absolute;border-radius:50%;background:#FFE6A8;box-shadow:0 0 14px 4px rgba(255,208,110,.65);animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.12;transform:scale(.55)}50%{opacity:1;transform:scale(1)}}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(40px,6vw,80px);align-items:center;padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(72px,9vw,120px)}
+.hero h1{font-size:clamp(56px,7.4vw,104px);line-height:.92;letter-spacing:-.01em}
+.hero h1 em{display:block;font-weight:500;color:var(--gold)}
+.hero .lead{font-size:clamp(17px,1.5vw,20px);color:var(--mute);max-width:500px;margin:26px 0 24px}
+.hero .price{display:flex;align-items:baseline;gap:12px;margin:0 0 28px}
+.hero .price b{font:700 clamp(34px,3.4vw,44px) 'Cormorant Garamond',serif;color:var(--ink)}
+.hero .price span{font-size:15px;color:var(--mute)}
+.ctas{display:flex;flex-wrap:wrap;gap:14px}
+.perks{display:flex;flex-wrap:wrap;gap:12px 28px;margin:36px 0 0;padding:24px 0 0;border-top:1px solid rgba(230,199,122,.22);list-style:none}
+.perks li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--mute)}
+.perks svg{width:18px;height:18px;flex:none}
+.frame{position:relative;max-width:480px;margin:0 auto;width:100%}
+.frame::before{content:"";position:absolute;inset:-16px;border:1px solid rgba(230,199,122,.5);border-radius:280px 280px 28px 28px}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%;border-radius:260px 260px 20px 20px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 90px rgba(222,165,64,.28)}
+.tag{position:absolute;left:-26px;bottom:42px;display:flex;gap:12px;align-items:center;background:rgba(13,37,27,.92);border:1px solid rgba(230,199,122,.45);border-radius:18px;padding:14px 20px}
+.tag i{width:10px;height:10px;border-radius:50%;background:#FFE6A8;box-shadow:0 0 12px 3px rgba(255,208,110,.8);animation:tw 2.4s ease-in-out infinite;flex:none}
+.tag b{display:block;font-size:15px}.tag span{font-size:13px;color:var(--mute)}
+
+/* faixa */
+.ribbon{background:var(--gold);color:#1A1408;overflow:hidden;white-space:nowrap;padding:16px 0}
+.ribbon div{display:inline-flex;gap:44px;animation:mq 30s linear infinite;font:italic 600 26px 'Cormorant Garamond',serif}
+.ribbon span{display:inline-flex;gap:44px;align-items:center}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* detalhes */
+.day{background:var(--ivory);color:var(--dark)}
+.day .kicker{color:#86661C}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(48px,7vw,96px);align-items:center}
+.photos{position:relative;padding:0 24px 32px 0}
+.photos .big{width:100%;aspect-ratio:1;object-fit:cover;border-radius:28px}
+.photos .small{position:absolute;right:0;bottom:0;width:42%;aspect-ratio:1;object-fit:cover;border-radius:22px;border:6px solid var(--ivory);box-shadow:0 20px 44px rgba(0,0,0,.22)}
+.feats{list-style:none;padding:0;margin:36px 0 0}
+.feats li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:24px 0;border-top:1px solid #E3D5B8}
+.feats .ico{width:52px;height:52px;border-radius:50%;background:var(--pine);display:grid;place-items:center}
+.feats .ico svg{width:24px;height:24px}
+.feats b{display:block;font-size:19px;margin-bottom:4px}
+.feats span{color:var(--soft);font-size:16px}
+
+/* ambiente */
+.mood{position:relative;overflow:hidden;text-align:center}
+.mood .bg{position:absolute;inset:-60px;background:url(arvore.webp) center/cover;filter:blur(22px) brightness(.42) saturate(1.15);transform:scale(1.1)}
+.mood .wrap{position:relative;display:grid;justify-items:center;gap:48px}
+.mood blockquote{margin:0;font:500 clamp(36px,5vw,64px)/1.08 'Cormorant Garamond',serif;max-width:900px;text-wrap:balance}
+.mood blockquote em{color:var(--gold)}
+.mood img{width:100%;max-width:880px;aspect-ratio:16/7;object-fit:cover;border-radius:24px;border:1px solid rgba(230,199,122,.4);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+
+/* compra */
+.buy{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(40px,6vw,80px);align-items:start}
+.gallery .main{width:100%;aspect-ratio:1;object-fit:cover;border-radius:26px;background:#E9DFC9}
+.thumbs{display:flex;gap:12px;margin-top:14px}
+.thumbs button{width:88px;height:88px;padding:0;border-radius:16px;overflow:hidden;border:2px solid transparent;background:none;cursor:pointer;opacity:.65;transition:opacity .2s,border-color .2s}
+.thumbs button[aria-pressed=true]{border-color:#B08A35;opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.panel{background:#fff;border:1px solid #E6DAC0;border-radius:28px;padding:clamp(28px,3.4vw,44px);box-shadow:0 30px 60px rgba(19,32,26,.08);position:sticky;top:100px}
+.panel h2{font-size:clamp(34px,3.4vw,46px)}
+.panel .sub{color:var(--soft);margin:12px 0 26px}
+.panel .p{font:700 clamp(40px,4vw,52px)/1 'Cormorant Garamond',serif;color:var(--dark);margin:0 0 26px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #EFE5CF}
+.row label,.row .lbl{font-weight:600;font-size:16px}
+.qty{display:flex;align-items:center;border:1px solid #DCCDAE;border-radius:999px;overflow:hidden}
+.qty button{width:46px;height:46px;border:0;background:none;font:500 22px Inter,sans-serif;color:var(--dark);cursor:pointer}
+.qty button:hover{background:#F4ECDB}
+.qty output{min-width:40px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.total{font:700 24px Inter,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+.panel .btn{width:100%;min-height:60px;font-size:17px;margin-top:10px}
+.panel .btn-gold{background:var(--pine);color:var(--gold2);box-shadow:0 14px 30px rgba(13,37,27,.25)}
+.panel .btn-gold:hover{background:#18402F}
+.incl{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:10px}
+.incl li{display:flex;gap:10px;align-items:center;color:var(--soft);font-size:15px}
+.incl svg{width:18px;height:18px;flex:none}
+.ship{display:flex;align-items:center;gap:12px;background:#F6EEDC;border-radius:16px;padding:14px 18px;margin:8px 0 6px;font-size:16px;color:var(--dark)}
+.ship svg{width:24px;height:24px;flex:none}
+.secure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:14px;color:var(--soft)}
+.secure svg{width:16px;height:16px}
+
+footer{border-top:1px solid rgba(230,199,122,.18);padding:30px 0;color:#A9A08E;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+footer b{font:700 22px 'Cormorant Garamond',serif;color:var(--ink)}
+
+/* barra fixa no celular */
+.mbar{display:none}
+@media(max-width:900px){
+  .hero .wrap,.split,.buy{grid-template-columns:minmax(0,1fr)}
+  .hero .frame{max-width:400px}
+  .nav a:not(.btn){display:none}
+  .panel{position:static}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,16px) calc(12px + env(safe-area-inset-bottom));background:rgba(13,37,27,.96);backdrop-filter:blur(10px);border-top:1px solid rgba(230,199,122,.3)}
+  .mbar b{font:700 26px 'Cormorant Garamond',serif}
+  .mbar .btn{min-height:48px;padding:0 24px}
+  footer{padding-bottom:100px}
+}
+@media(max-width:600px){
+  .tag{left:-6px;bottom:24px}
+  .ctas .btn{width:100%}
+  .photos{padding:0 12px 24px 0}
+  .thumbs button{width:72px;height:72px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#topo">
+      <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="#E6C77A"><path d="M12 1.5l2.6 5.6 6.1.7-4.6 4.1 1.3 6L12 14.9l-5.4 3 1.3-6-4.6-4.1 6.1-.7z"/></svg>
+      <b>Árvore Imperial</b>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#detalhes">Detalhes</a>
+      <a href="#comprar">Comprar</a>
+      <a class="btn btn-gold" href="#comprar">Comprar agora</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="lights" id="lights" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <p class="kicker">Coleção de Natal 2026</p>
+      <h1>Árvore Imperial <em>Iluminada</em></h1>
+      <p class="lead">Galhos em PVC de luxo, formato europeu e luzes quentes já instaladas em toda a copa. É montar, acender e ver a sala inteira virar Natal.</p>
+      <p class="price"><b class="js-price">R$ 899,00</b><span>à vista</span></p>
+      <div class="ctas">
+        <a class="btn btn-gold" href="#comprar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          Comprar agora</a>
+        <a class="btn btn-line" href="#detalhes">Ver detalhes</a>
+      </div>
+      <ul class="perks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Luzes já instaladas</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>PVC de luxo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Formato europeu</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Entrega em até 7 dias</li>
+      </ul>
+    </div>
+    <div class="frame">
+      <img src="arvore.webp" alt="Árvore Imperial Iluminada montada numa sala com lareira e presentes" width="1000" height="1000">
+      <div class="tag"><i aria-hidden="true"></i><div><b>Já vem iluminada</b><span>Luz quente em toda a copa</span></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ribbon" aria-hidden="true"><div id="ribbon"></div></div>
+
+<section class="band day" id="detalhes">
+  <div class="wrap split">
+    <div class="photos">
+      <img class="big" src="detalhe.webp" alt="Detalhe dos galhos iluminados" width="800" height="800">
+      <img class="small" src="arvore.webp" alt="Árvore inteira acesa" width="1000" height="1000">
+    </div>
+    <div>
+      <p class="kicker">Feita pra impressionar</p>
+      <h2>Cheia, elegante e pronta pra brilhar</h2>
+      <ul class="feats">
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg></span>
+          <div><b>Já vem iluminada</b><span>Luzes em tom quente espalhadas por toda a copa, do pé até a ponta. Acendeu, a sala muda.</span></div></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l5 7h-3l4 6h-3l4 6H5l4-6H6l4-6H7z"/></svg></span>
+          <div><b>Galhos em PVC de luxo</b><span>Folhagem densa e volumosa, com aparência cheia e natural, sem os buracos de árvore comum.</span></div></li>
+        <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5 5.6.6-4.2 3.8 1.2 5.6L12 14.3 7 17l1.2-5.6L4 7.6 9.6 7z"/></svg></span>
+          <div><b>Formato europeu</b><span>Copa alta e cônica, uma silhueta elegante que fica linda com ou sem enfeites.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band mood">
+  <div class="bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <blockquote>Ela não só decora a sala. <em>Ela vira o centro do seu Natal.</em></blockquote>
+    <img src="presentes.webp" alt="Presentes ao pé da árvore iluminada" width="960" height="420">
+  </div>
+</section>
+
+<section class="band day" id="comprar">
+  <div class="wrap buy">
+    <div class="gallery">
+      <img class="main" id="mainImg" src="arvore.webp" alt="Árvore Imperial Iluminada" width="1000" height="1000">
+      <div class="thumbs" role="group" aria-label="Fotos do produto">
+        <button type="button" aria-pressed="true" data-src="arvore.webp" aria-label="Foto 1: árvore inteira"><img src="arvore.webp" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="detalhe.webp" aria-label="Foto 2: detalhe dos galhos"><img src="detalhe.webp" alt=""></button>
+        <button type="button" aria-pressed="false" data-src="presentes.webp" aria-label="Foto 3: base com presentes"><img src="presentes.webp" alt=""></button>
+      </div>
+    </div>
+    <div class="panel">
+      <p class="kicker">Natal 2026</p>
+      <h2>Árvore Imperial Iluminada</h2>
+      <p class="sub">PVC de luxo · formato europeu · luzes quentes já instaladas</p>
+      <p class="p js-price">R$ 899,00</p>
+      <div class="row">
+        <span class="lbl" id="qtyLbl">Quantidade</span>
+        <div class="qty" role="group" aria-labelledby="qtyLbl">
+          <button type="button" id="minus" aria-label="Diminuir quantidade">−</button>
+          <output id="qty" aria-live="polite">1</output>
+          <button type="button" id="plus" aria-label="Aumentar quantidade">+</button>
+        </div>
+      </div>
+      <div class="row">
+        <span class="lbl">Total</span>
+        <span class="total" id="total">R$ 899,00</span>
+      </div>
+      <div class="ship"><svg viewBox="0 0 24 24" fill="none" stroke="#A0802F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span><b>Entrega em até 7 dias</b></span></div>
+      <a class="btn btn-gold" id="buy" href="#comprar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        Comprar agora</a>
+      <p class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura</p>
+      <ul class="incl">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#A0802F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Luzes quentes em toda a copa</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#A0802F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Galhos densos em PVC de luxo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#A0802F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Silhueta alta no formato europeu</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>Árvore Imperial</b>
+    <span>Natal 2026</span>
+  </div>
+</footer>
+
+<div class="mbar">
+  <b class="js-price">R$ 899,00</b>
+  <a class="btn btn-gold" href="#comprar">Comprar agora</a>
+</div>
+
+<script>
+{
+  /* ===== CONFIGURAÇÃO DA LOJA ===== */
+  const PRECO = 899.00;           // preço da árvore
+  const CHECKOUT_URL = '';        // cole aqui o link do checkout
+  /* ================================ */
+
+  const brl = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.querySelectorAll('.js-price').forEach(el => el.textContent = brl(PRECO));
+
+  const L = document.getElementById('lights');
+  const pts = [[6,12,6,0],[14,40,4,1.1],[22,8,5,2.2],[31,70,4,.6],[44,14,6,1.7],[50,86,5,2.8],[58,6,4,.3],[63,30,7,1.4],[68,64,5,2.5],[74,12,4,.9],[80,48,6,2],[85,82,4,1.2],[89,24,5,.4],[94,58,6,2.6],[97,8,4,1.8],[38,92,5,.7],[3,64,5,2.3],[47,50,3,1.5],[26,30,4,3],[9,88,5,.2]];
+  L.innerHTML = pts.map(([x,y,s,d]) => `<i style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></i>`).join('');
+
+  const words = ['Árvore Imperial','Iluminada','PVC de luxo','Estilo europeu','Entrega em até 7 dias','Natal 2026'];
+  const run = words.map(w => `<span>${w} <span aria-hidden="true">✦</span></span>`).join('');
+  document.getElementById('ribbon').innerHTML = run + run + run + run;
+
+  const main = document.getElementById('mainImg');
+  const thumbs = document.querySelectorAll('.thumbs button');
+  thumbs.forEach(b => b.addEventListener('click', () => {
+    main.src = b.dataset.src;
+    thumbs.forEach(t => t.setAttribute('aria-pressed', t === b ? 'true' : 'false'));
+  }));
+
+  let qty = 1;
+  const qEl = document.getElementById('qty'), tEl = document.getElementById('total'), buy = document.getElementById('buy');
+  const render = () => {
+    qEl.textContent = qty;
+    tEl.textContent = brl(PRECO * qty);
+    if (CHECKOUT_URL) buy.href = CHECKOUT_URL + (CHECKOUT_URL.includes('?') ? '&' : '?') + 'quantity=' + qty;
+  };
+  document.getElementById('minus').addEventListener('click', () => { if (qty > 1) { qty--; render(); } });
+  document.getElementById('plus').addEventListener('click', () => { if (qty < 10) { qty++; render(); } });
+  render();
+}
+</script>
+</body>
+</html>
